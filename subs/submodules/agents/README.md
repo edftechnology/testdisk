@@ -88,3 +88,5 @@ cat "$file_path"
 
 [1] OPENAI. ***OpenAI Codex Overview***. Disponível em: <https://platform.openai.com/docs/codex/overview>. Acessado em: 14/08/2025 17:44.
 
+[2] OPENAI. ***Agents***. Disponível em: <https://chatgpt.com/c/689e66ac-718c-8332-8f96-2fe5143ddc4e>. Acessado em: 14/08/2025 17:44.
+
