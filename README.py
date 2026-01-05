@@ -1,140 +1,95 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Como instalar e usar o editor `nano` no `Linux Ubuntu`
+# # Como instalar o `testdisk` no `Linux Ubuntu`
 # 
 # 
 # 
 
 # ## Resumo
 # 
-# Guia rápido para instalar, configurar e usar o editor de texto `nano` no Ubuntu, incluindo atalhos essenciais e ajustes de ergonomia baseados na sessão do ChatGPT.
+# Guia direto para instalar o `testdisk` no Ubuntu, com verificacao pos-instalacao e comandos iniciais para uso em recuperacao de particoes e arquivos.
 # 
 
 # ## _Abstract_
 # 
-# Quick guide on installing, configuring, and using the `nano` text editor on Ubuntu, with essential shortcuts and usability tweaks captured from the ChatGPT session.
+# Quick guide to install `testdisk` on Ubuntu, with post-install checks and first-run commands for partition and file recovery.
 # 
 
-# ## Descrição
+# ## Descricao
 # 
-# ### `nano`
+# ### `testdisk`
 # 
-# O `nano` é um editor de terminal leve e pré-instalado em muitas distribuições, voltado para edição rápida de arquivos de configuração e código. Ele destaca atalhos diretamente no rodapé, suporta sintaxe, numeração de linhas e wraps automáticos, sendo uma opção acessível quando se precisa editar em servidores ou WSL sem interface gráfica.
+# O `testdisk` e uma ferramenta de terminal voltada a recuperar particoes perdidas e reparar tabelas de particao. Ele costuma vir acompanhado do `photorec`, que recupera arquivos a partir de midias danificadas ou formatadas, mesmo sem o sistema de arquivos original.
 # 
 
-# ## 1. Instalar o `nano` no `Linux Ubuntu`
+# ## 1. Instalar o `testdisk` no `Linux Ubuntu`
 # 
-# Para instalar o `nano`, siga os passos abaixo:
+# Para instalar o `testdisk`, siga os passos abaixo:
 # 
-# 1. Abra o `Terminal Emulator`. Você pode fazer isso pressionando: `Ctrl + Alt + T`
+# 1. Abra o `Terminal Emulator`. Voce pode fazer isso pressionando: `Ctrl + Alt + T`
+# 
 
-# 2. Certifique-se de que seu sistema esteja limpo e atualizado.
+# 2. Atualize o indice de pacotes e instale o `testdisk` com o `apt`:
 # 
-#     2.1 Limpar o `cache` do gerenciador de pacotes `apt`. Especificamente, ele remove todos os arquivos de pacotes (`.deb`) baixados pelo `apt` e armazenados em `/var/cache/apt/archives/`. Digite o seguinte comando:
-#     ```bash
-#     sudo apt clean
-#     ```
-# 
-#     2.2 Remover pacotes `.deb` antigos ou duplicados do `cache` local. É útil para liberar espaço, pois remove apenas os pacotes que não podem mais ser baixados (ou seja, versões antigas de pacotes que foram atualizados). Digite o seguinte comando:
-#     ```bash
-#     sudo apt autoclean
-#     ```
-# 
-#     2.3 Remover pacotes que foram automaticamente instalados para satisfazer as dependências de outros pacotes e que não são mais necessários. Digite o seguinte comando:
-#     ```bash
-#     sudo apt autoremove -y
-#     ```
-# 
-#     2.4 Buscar as atualizações disponíveis para os pacotes que estão instalados em seu sistema. Digite o seguinte comando e pressione `Enter`:
+#     2.1 Atualizar a lista de pacotes:
 #     ```bash
 #     sudo apt update
 #     ```
 # 
-#     2.5 **Corrigir pacotes quebrados**: Isso atualizará a lista de pacotes disponíveis e tentará corrigir pacotes quebrados ou com dependências ausentes:
+#     2.2 Instalar o `testdisk`:
 #     ```bash
-#     sudo apt --fix-broken install
+#     sudo apt install testdisk -y
 #     ```
 # 
-#     2.6 Limpar o `cache` do gerenciador de pacotes `apt` novamente:
+#     2.3 (Opcional) Confirmar a versao instalada:
 #     ```bash
-#     sudo apt clean
-#     ```
-# 
-#     2.7 Para ver a lista de pacotes a serem atualizados, digite o seguinte comando e pressione `Enter`:
-#     ```bash
-#     sudo apt list --upgradable
-#     ```
-# 
-#     2.8 Realmente atualizar os pacotes instalados para as suas versões mais recentes, com base na última vez que você executou `sudo apt update`. Digite o seguinte comando e pressione `Enter`:
-#     ```bash
-#     sudo apt full-upgrade -y
+#     testdisk --version
 #     ```
 # 
 
-# 3. Para instalar o `nano`, execute o comando:
+# 3. Para iniciar o `testdisk` com permissao administrativa, execute:
 # 
 #     ```bash
-#     sudo apt install nano -y
+#     sudo testdisk
 #     ```
-
-# ## 2. Ajustes rápidos de usabilidade
-# 
-#     4.1 Criar ou editar `~/.nanorc` com opções úteis:
-#     
-#     ```bash
-#     cat <<'EOF' >> ~/.nanorc
-#     set linenumbers
-#     set softwrap
-#     set tabsize 4
-#     set mouse
-#     EOF
-#     ```
-# 
-#     4.2 Reabra o `nano` para carregar as configurações. Use `nano ~/.nanorc` para ajustar as opções conforme preferências.
-# 
-#     4.3 Se quiser desativar o mouse ou wraps em uma sessão, inicie o editor com flags temporárias, por exemplo:
-#     
-#     ```bash
-#     nano -c -i arquivo.txt
-#     ```
-#     
-#     (`-c` exibe a posição do cursor na barra de status, `-i` mantém a indentação ao quebrar linhas).
 # 
 
-# ## 3. Comandos essenciais dentro do `nano`
+# ## 2. Primeiros passos rapidos
 # 
-# - `Ctrl+G`: abre a ajuda embutida com a lista completa de atalhos.
+#     1. Escolha `Create` para gerar um arquivo de log e pressionar `Enter`.
 # 
-# - `Ctrl+W` busca texto; `Alt+W` repete a busca.
+#     2. Selecione o disco correto (setas do teclado) e confirme em `Proceed`.
 # 
-# - `Ctrl+K` recorta a linha ou seleção; `Ctrl+U` cola.
+#     3. Mantenha o tipo de tabela sugerido (`Intel/PC`, `EFI GPT`, etc.) e avance.
 # 
-# - `Ctrl+\` substitui texto; `Ctrl+^` (Ctrl+6) marca o início de uma seleção.
-# 
-# - `Ctrl+_` (Ctrl+Shift+-) permite ir direto para `linha,coluna`.
-# 
-# - `Alt+/` vai ao final do arquivo; `Alt+\` retorna ao início.
-# 
-# - `Ctrl+O` salva rapidamente; `Ctrl+X` sai.
+#     4. Use `Analyse` para buscar particoes e confirme com `Write` apenas quando tiver certeza.
 # 
 
-# ## 5. Fluxos comuns
+# ## 3. Boas praticas antes de recuperar
 # 
-# 1. Editar com backup rápido antes de alterar configurações sensíveis:
-#     ```bash
-#     cp /etc/hosts /tmp/hosts.bak && sudo nano /etc/hosts
-#     ```
+# - Trabalhe, sempre que possivel, em uma copia do disco (imagem) para evitar sobrescrever dados.
 # 
-# 2. Abrir um arquivo ignorando configurações pessoais (útil para depurar a nanorc):
-#     ```bash
-#     nano -I arquivo.txt
-#     ```
+# - Evite escrever novos arquivos no disco afetado ate concluir a recuperacao.
 # 
-# 3. Escrever notas longas e alinhar parágrafos usando `Ctrl+J` para justificar o texto selecionado.
+# - Tenha um disco externo preparado para salvar os arquivos recuperados.
 # 
 
-# ## Referências
+# ## 4. Fluxo rapido com `photorec`
 # 
-# [1] OPENAI. ***Como instalar e usar o editor nano no Linux Ubuntu***. Disponível em: <https://chatgpt.com/c/69398f2b-bca8-8329-90ec-19a18d3dd429>. ChatGPT. Acessado em: 11/12/2025.
+# 1. Para abrir o `photorec`, use:
+#     ```bash
+#     sudo photorec
+#     ```
+# 
+# 2. Selecione o disco, escolha o tipo de sistema de arquivos e a particao.
+# 
+# 3. Defina o destino de recuperacao em outro disco e inicie a varredura.
+# 
+
+# ## Referencias
+# 
+# [1] OPENAI. ***Como instalar o testdisk no Linux Ubuntu***. Disponivel em: <https://chatgpt.com/c/695bf07a-a8b0-832b-9484-abd425ee520d>. ChatGPT. Acessado em: 11/12/2025.
+# 
+# [2] CGSECURITY. ***TestDisk & PhotoRec***. Disponivel em: <https://www.cgsecurity.org/>. Acessado em: 11/12/2025.
 # 
